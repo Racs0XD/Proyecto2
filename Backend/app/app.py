@@ -59,6 +59,7 @@ def crearJsonP():
 # --------------- lectura de archivo json --------------
 # ------------------------------------------------------
 # ------------------------------------------------------
+# --------------------------------------------------- lee los usuarios -------------------------------------------------------------
 def leerJson():
     path, _ = os.path.split(os.path.abspath(__file__))
     global users
@@ -66,7 +67,7 @@ def leerJson():
     with open(path+f'/users.json') as file:
         users = json.load(file)
 
-
+# --------------------------------------------------- Lee las Publicaciones -------------------------------------------------------------
 def leerJsonP():
     path, _ = os.path.split(os.path.abspath(__file__))
     global publications, imagenesP, videosP
@@ -84,7 +85,7 @@ def leerJsonP():
     with open(path+f'/publicationsTemp.json') as file:
         temporalLikes = json.load(file)
 
-
+# ---------------------------------crea una lista nueva de publicaciones para ver videos -------------------------------------------------------------
 def idVideo():
     leerJsonP()
     global listaV, listaI, listaTemp, pb, topLike, topLikeEnv
@@ -131,6 +132,8 @@ def idVideo():
     topLike = pb
     listaTemp = imagenesP + listaV
 
+# --------------------------------------------------- Ordena la lista -------------------------------------------------------------
+
 def bubble_sort(lista):
     for i in range(len(lista)):
         for j in range(len(lista)-1):
@@ -148,7 +151,7 @@ def bubbleLikes(lista):
                 lista[j+1] = temp
 
 
-
+# --------------------------------------------------- Carga Masiva-------------------------------------------------------------
 
 @app.route('/admin/usuarios/carga', methods=['POST'])
 def cargandoJson(archivoJson):
@@ -157,35 +160,38 @@ def cargandoJson(archivoJson):
 # ------------------------------------------------------
 # ---------- ruta para llamar el listado json ----------
 # ------------------------------------------------------
-# ------------------------------------------------------
+# -----------------------------------------------------
+# --------------------------------------------------- retorna la información base -------------------------------------------------------------
 @app.route('/info')
 def info():
     return jsonify({"Usuario":"Bienvenido a Ublog, un lugar en el que podrás compartir imagenes y videos utilizando su enlace url sin la necesidad de descargar ningun archivo, consigue ser uno de los usuarios en el top 5 con más publicaciones y aumentarás las probabilidades que una de tus publicaciones entre en el top 5 de publicaciones con más likes, disfruta del contenido compartido por otros usuarios y compite por ser el mejor estando entre los primeros 5."})
 
+# --------------------------------------------------- retorna la lista de usuarios-------------------------------------------------------------
 @app.route('/admin/usuarios')
 def listado():
     leerJson()
     return jsonify(users)
 
-
+# --------------------------------------------------- retorna la lista de imagnes -------------------------------------------------------------
 @app.route('/admin/publicacionesI')
 def listadoI():
     idVideo()
     return jsonify(imagenesP)
 
-
+# --------------------------------------------------- retorna la lista de videos -------------------------------------------------------------
 @app.route('/admin/publicacionesV')
 def listadoV():
     idVideo()
     return jsonify(listaV)
 
-
+# ------------------------------------------- retorna la lista de publicaciones para blog -------------------------------------------------------------
 @app.route('/blog/publico')
 def listaBlog():
     idVideo()
     bubble_sort(pb)
     return jsonify(pb)
 
+# --------------------------------------------- retorna la lista que almacena top likes -------------------------------------------------------------
 @app.route('/blog/likes')
 def rankLikeM():
     idVideo()    
@@ -197,6 +203,7 @@ def rankLikeM():
             likelist.append(topLike[rank])         
     return jsonify(likelist)
 
+# --------------------------------------------retorna la lista de publicaciones para pdf -------------------------------------------------------------
 @app.route('/blog/likesM')
 def rankLike():
     idVideo()    
@@ -208,6 +215,7 @@ def rankLike():
             likelista.append(temporalLikes[rank])         
     return jsonify(likelista)
 
+# -------------------------------------------- retorna las publicaciones de un usuario -------------------------------------------------------------
 @app.route('/blog/usuario/<string:user_name>')
 def pbUser(user_name):
     idVideo()
@@ -244,6 +252,7 @@ def pbUser(user_name):
     bubble_sort(mandar)
     return jsonify(mandar)
 
+# ----------------------------------------------- retorna a los usuarios con más likes -------------------------------------------------------------
 @app.route('/top/publicaciones')
 def topUsuarioPubli():
     idVideo()
@@ -268,6 +277,7 @@ def topUsuarioPubli():
             listaFinal.append(envioTop[rank])         
     return jsonify(listaFinal)
 
+# -------------------------------------------- retorna la posición de un usuario en el top -------------------------------------------------------------
 @app.route('/top/posicion/<string:user_name>')
 def posUsuario(user_name):
     idVideo()   
@@ -280,6 +290,7 @@ def posUsuario(user_name):
     tuRank = list(lista).index(user_name)+1
     return jsonify(tuRank)
 
+# ----------------------------------------------- retorna la posición del usuario -------------------------------------------------------------
 @app.route('/top/publicaciones/<string:user_name>')
 def publiUsuario(user_name):
     idVideo()   
@@ -299,6 +310,7 @@ def publiUsuario(user_name):
             break
     return jsonify(posicion)
 
+# -------------------------------------------------retorna la lista para el pdf -------------------------------------------------------------
 @app.route('/top/maspublicados')
 def listaPubliUsuario():
     idVideo()   
@@ -385,12 +397,36 @@ def addUsuario():
         "email": request.json['email'],
         "password": request.json['password']
     }
-    usuarioEncontrado = [usuarios for usuarios in users if usuarios['username']
-                         == request.json['username'] or usuarios['email'] == request.json['email']]
-    if(request.json['name'] == '' or request.json['gender'] == '' or request.json['username'] == '' or request.json['email'] == '' or request.json['password'] == ''):
-        return jsonify({
-            "Mensaje": "Hay campos vacíos"
-        })
+
+    usuarioEncontrado = [usuarios for usuarios in users if usuarios['username'] == request.json['username']]
+    contcontra = len(request.json['password'])
+    conNumeros = any(chr.isdigit() for chr in request.json['password'])
+    validador = False
+    validador2 = False
+    for valor in request.json['password']:
+        if (valor == '.' or valor == ',' or valor == '-' or valor == '_' or valor == '+' or valor == '*' or valor == '/' or valor == '#' or valor == '$' or valor == '%'or valor == '&'or valor == '/'or valor == '(' or valor == ')' or valor == '!' or valor == '¿' or valor == '¡' or valor == '?' or valor == '=' ):
+            validador = True         
+            break   
+        else:
+            validador = False
+
+    for valor in request.json['gender']:
+        if (valor == 'm' or valor == 'M' or valor == 'f' or valor == 'F' ):
+            validador2 = True     
+            break       
+        else:
+            validador2 = False
+
+
+    
+    if(validador2 == False):
+        return jsonify({"Mensaje": "Ingrese M para masculino o F para femenino"})  
+    elif(contcontra <= 7):
+        return jsonify({"Mensaje": "La contraseña debe de contener al menos 8 caracteres "})
+    elif(conNumeros == False or validador == False):
+        return jsonify({"Mensaje": "La contraseña debe de contener al menos un numero y un símbolo"})
+    elif(request.json['name'] == '' or request.json['gender'] == '' or request.json['username'] == '' or request.json['email'] == '' or request.json['password'] == ''):
+        return jsonify({"Mensaje": "Hay campos vacíos"})     
     else:
         if (len(usuarioEncontrado) > 0):
             return jsonify({"Mensaje": "El nombre de usuario o correo ya fue registrado"})
