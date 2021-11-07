@@ -1,0 +1,59 @@
+<app-header></app-header>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+  <h3>Lista de Usuarios</h3>
+  <a href="agregar-usuario" class="btn">
+    <i class="icon-pencil"></i>
+    <span><strong>Nuevo Usuario</strong></span>
+  </a>&nbsp;
+
+  <a class="btn" (click)="cargaMasiva()">
+    <span><strong>Carga Masiva Usuarios</strong></span>
+  </a>&nbsp;
+
+  <a *ngIf="cargaStatus">    
+      <input type="file" name="myfile"  (change)="onFileSelect($event.target)" >
+  </a>
+
+  <a class="btn" (click)="redireccionar()">
+    <span><strong>Reporte PDF</strong></span>
+  </a>&nbsp;
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Nombre Usuario</th>
+        <th scope="col">Email</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Usuario of users; let indice=index">
+        <th scope="row">{{indice+1}}</th>
+        <td>{{Usuario.name}}</td>
+        <td>{{Usuario.gender}}</td>
+        <td>{{Usuario.username}}</td>
+        <td>{{Usuario.email}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="verUsuario(Usuario.username)">
+            <i class="icon-eye-open icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-success" (click)="editarUsuario(Usuario.username)">
+            <i class="icon-edit icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger" (click)="eliminarUsuario(Usuario.username)"
+            onclick="location.reload()">
+            <i class="icon-trash icon-white"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<app-footer></app-footer>

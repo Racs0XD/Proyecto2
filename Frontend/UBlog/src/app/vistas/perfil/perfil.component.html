@@ -1,0 +1,106 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<app-headerperlfil></app-headerperlfil>
+<!------ Include the above in your HEAD tag ---------->
+<h3 class="fadeIn primero" style="text-align:center">Mis Datos</h3>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn primero">
+            <h3>{{nombre}}</h3>
+        </div>
+
+
+
+        <!-- Login Form -->
+        <form [formGroup]="editarForm">
+            <label for="exampleFormControlInput1" class="fadeIn a"><b>Nombre</b></label>
+            <input type="text" [readonly]="!editable" class="fadeIn b" placeholder="Nombre"
+                formControlName="name"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn c"><b>Genero</b></label>
+            <input type="text" [readonly]="!editable" class="fadeIn d" placeholder="Genero"
+                formControlName="gender"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn e"><b>Nombre de Usuario</b></label>
+            <input type="text" [readonly]="!editable" class="fadeIn f" placeholder="Nombre de Usuario"
+                formControlName="username"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn g"><b>Correo</b></label>
+            <input type="text" [readonly]="!editable" class="fadeIn h" placeholder="Email"
+                formControlName="email"><br><br>
+
+        </form>
+
+
+
+    </div>
+</div>
+<h3 style="text-align:center" class="fadeIn primero">Mi Posición</h3>
+<h3 style="text-align:center" class="fadeIn primero">{{miPosicion}}</h3>
+<h3 style="text-align:center" class="fadeIn primero">Mi Publicaciones</h3>
+<h3 style="text-align:center" class="fadeIn primero">{{misPublicaciones}}</h3>
+
+<div class="grid">
+    
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let Publicaciones of publicacion">
+                {{validarUrl(Publicaciones.url)}}
+                <td *ngIf="imagen">
+                    {{Publicaciones.user}}
+                    {{Publicaciones.date}}<br>
+                    {{Publicaciones.category}}
+                    <section>
+                        <img [src]="Publicaciones.url"><br>
+                    </section>
+
+                    <button type="button" class="btn btn-primary"
+                        (click)="likePubli(Publicaciones.like,Publicaciones.url)" onclick="location.reload()">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </button>&nbsp;
+                    {{Publicaciones.like}}&nbsp;
+                    <button type="button" class="btn btn-success" (click)="editarImagen(Publicaciones.url)">
+                        <i class="icon-edit icon-white"></i>
+                    </button>&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="eliminarImagen(Publicaciones.url)"
+                        onclick="location.reload()">
+                        <i class="icon-trash icon-white"></i>
+                    </button>
+                </td>
+                <td *ngIf="video">
+                    <div #demoYouTubePlayer class="demo-youtube-player">
+                        {{Publicaciones.user}}
+                        {{Publicaciones.date}}<br>
+                        {{Publicaciones.category}}
+                        <section>
+                            <youtube-player videoId={{Publicaciones.url}}></youtube-player>
+                        </section>
+
+                        <button type="button" class="btn btn-primary"
+                            (click)="likePubli(Publicaciones.like,Publicaciones.url)" onclick="location.reload()">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </button>&nbsp;
+                        {{Publicaciones.like}}&nbsp;
+                        <button type="button" class="btn btn-success" (click)="editarImagen(Publicaciones.url)">
+                            <i class="icon-edit icon-white"></i>
+                        </button>&nbsp;
+                        <button type="button" class="btn btn-danger" (click)="eliminarImagen(Publicaciones.url)"
+                            onclick="location.reload()">
+                            <i class="icon-trash icon-white"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+
+
+<app-footerblog></app-footerblog>

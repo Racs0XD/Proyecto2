@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn primero">
+        <h3>Publicacion</h3>
+      </div>
+
+      
+  
+      <!-- Login Form -->
+      <form [formGroup]="publicacionForm" (ngSubmit)="volver()">
+        <label for="exampleFormControlInput1" class="fadeIn a"><b>URL</b></label>
+        <input type="texto" [readonly]="!editable" class="fadeIn b" placeholder="url" formControlName="url"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn c"><b>Fecha</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn d" placeholder="fecha" formControlName="date"><br><br>
+        <label for="exampleFormControlInput1"class="fadeIn e"><b>Categoria</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn f" placeholder="categoria" formControlName="category"><br><br>
+        <input type="submit"  class="fadeIn k" value="volver" >     
+      </form>       
+
+      
+
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+
+
+  <app-footer></app-footer>

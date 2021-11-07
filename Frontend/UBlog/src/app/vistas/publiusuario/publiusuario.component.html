@@ -1,0 +1,42 @@
+<app-headerblog></app-headerblog>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn primero">
+        <h3>Actualizar Usuario</h3>
+      </div>
+
+  
+      <!-- Login Form -->
+      <form [formGroup]="publicacionForm" (ngSubmit)="actualizarPubli(publicacionForm.value,urlPubli)">
+        <label for="exampleFormControlInput1" class="fadeIn i"><b>Url</b></label>
+        <input type="text" class="fadeIn segundo" placeholder="URL" formControlName="url"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn i"><b>Categoria</b></label>
+        <input type="text" class="fadeIn cuarto" placeholder="Categoria" formControlName="category"><br><br>
+        <input type="submit" class="fadeIn septimo" value="Actualizar">
+      </form> 
+      
+      
+      <!-- Aprobacion -->
+    <div class="alert alert-success" *ngIf = "msjStatus">
+        <a>{{msjPublicacion}}</a>
+      </div>
+
+      <!-- Alerta -->
+    <div class="alert alert-danger" *ngIf = "errorStatus">
+        <a>{{errorMsj}}</a>
+      </div>
+  
+      <!-- Registro -->
+      <div id="formFooter">
+        <a class="underlineHover" href="blog">Volver</a>
+      </div>
+      <br>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+
+
+  <app-footer></app-footer>

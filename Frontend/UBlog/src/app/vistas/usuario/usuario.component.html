@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn primero">
+        <h3>Usuario</h3>
+      </div>
+
+      
+  
+      <!-- Login Form -->
+      <form [formGroup]="editarForm" (ngSubmit)="volver()">
+        <label for="exampleFormControlInput1" class="fadeIn a"><b>Nombre</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn b" placeholder="Nombre" formControlName="name"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn c"><b>Genero</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn d" placeholder="Genero" formControlName="gender"><br><br>
+        <label for="exampleFormControlInput1"class="fadeIn e"><b>Nombre de Usuario</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn f" placeholder="Nombre de Usuario" formControlName="username"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn g"><b>Correo</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn h" placeholder="Email" formControlName="email"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn i"><b>Contraseña</b></label>
+        <input type="text" [readonly]="!editable" class="fadeIn j" placeholder="contraseña" formControlName="password">  <br><br>
+        <input type="submit"  class="fadeIn k" value="volver" >     
+      </form>       
+
+      
+
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+
+
+  <app-footer></app-footer>

@@ -1,0 +1,41 @@
+<app-header></app-header>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+  <h3>Top 5 publicaciones con más likes</h3>
+
+ 
+
+  <a class="btn" (click)="generate()">
+    <span><strong>Generar PDF</strong></span>
+  </a>&nbsp;
+
+  <canvas class="canvas" id="miGrafica" width="800" height="450"></canvas>
+  <img id="url" />
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">URL</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Propietario</th>
+        <th scope="col">Likes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Publi of publicaciones; let indice=index">
+        <th scope="row">{{indice+1}}</th>
+        <td>{{Publi.url}}</td>
+        <td>{{Publi.date}}</td>
+        <td>{{Publi.category}}</td>
+        <td>{{Publi.user}}</td>
+        <td>{{Publi.like}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<br><br><br>
+
+<app-footer></app-footer>

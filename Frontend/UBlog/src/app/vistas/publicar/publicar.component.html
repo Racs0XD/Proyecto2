@@ -1,0 +1,60 @@
+<app-headerblog></app-headerblog>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn primero">
+            <h3>Realizar una nueva publicacion</h3>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                    (click)="tipo(i)">
+                <label class="form-check-label" for="inlineRadio1">Imagen</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                    (click)="tipo(v)">
+                <label class="form-check-label" for="inlineRadio2">Video</label>
+            </div>
+
+        </div>
+
+
+
+        <!-- Login Form -->
+        <form [formGroup]="publicacionForm" (ngSubmit)="agregarPubli(publicacionForm.value)">
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Url</b></label>
+            <input type="text" class="fadeIn segundo" placeholder="URL" formControlName="url"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Categoria</b></label>
+            <input type="text" class="fadeIn cuarto" placeholder="Categoria" formControlName="category"><br><br>
+            <input type="submit" class="fadeIn septimo" value="Publicar">
+            <input type="hidden" class="fadeIn quinto" placeholder={{usuario}} formControlName="user">
+            <input type="hidden" class="fadeIn quinto" placeholder={{fechactual}} formControlName="date"><br><br>
+            <input type="hidden" class="fadeIn quinto" placeholder={{likePost}} formControlName="like"><br><br>
+        </form>
+
+
+        <!-- Aprobacion -->
+        <div class="alert alert-success" *ngIf="msjStatus">
+            {{exitosa()}}
+        </div>
+
+        <!-- Alerta -->
+        <div class="alert alert-danger" *ngIf="errorStatus">
+            <a>{{errorMsj}}</a>
+        </div>
+
+        <!-- Registro -->
+        <div id="formFooter">
+            <a class="underlineHover" href="blog">Volver</a>
+        </div>
+        <br>
+    </div>
+</div>
+<br><br><br><br><br><br>
+
+
+
+<app-footerblog></app-footerblog>

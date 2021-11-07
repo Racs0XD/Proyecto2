@@ -1,0 +1,135 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<app-headerblog></app-headerblog>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<a class="h3" (click)="top5()">
+    <h3 style="text-align:center" class="fadeIn primero">Top 5 Publicaciones con más likes</h3>
+
+</a>
+
+
+
+
+<a *ngIf="topStatus">
+    <div class="grid1">
+        <table class="table table-hover">
+            <tbody>
+                <tr *ngFor="let likes of topLikes; let indice=index">
+                    {{validarUrl(likes.url)}}
+                    <h3>Top# <th scope="row">{{indice+1}}</th></h3>
+                    <td *ngIf="imagen">
+                        {{likes.user}}
+                        {{likes.date}}<br>
+                        {{likes.category}}
+                        <section>
+                            <img [src]="likes.url"><br>
+                        </section>
+    
+                        <button type="button" class="btn btn-primary" (click)="likePubli(likes.like,likes.url)"
+                            onclick="location.reload()">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </button>&nbsp;
+                        {{likes.like}}&nbsp;
+                        <button type="button" class="btn btn-success" (click)="editarPubli(likes.url,likes.user)">
+                            <i class="icon-edit icon-white"></i>
+                        </button>&nbsp;
+                        <button type="button" class="btn btn-danger" (click)="eliminarPubli(likes.url,likes.user)"
+                            onclick="location.reload()">
+                            <i class="icon-trash icon-white"></i>
+                        </button>
+                    </td>
+                    <td *ngIf="video">
+                        <div #demoYouTubePlayer class="demo-youtube-player">
+                            {{likes.user}}
+                            {{likes.date}}<br>
+                            {{likes.category}}
+                            <section>
+                                <youtube-player videoId={{likes.url}}></youtube-player>
+                            </section>
+    
+                            <button type="button" class="btn btn-primary" (click)="likePubli(likes.like,likes.url)"
+                                onclick="location.reload()">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </button>&nbsp;
+                            {{likes.like}}&nbsp;
+                            <button type="button" class="btn btn-success" (click)="editarPubli(likes.url,likes.user)">
+                                <i class="icon-edit icon-white"></i>
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-danger" (click)="eliminarPubli(likes.url,likes.user)"
+                                onclick="location.reload()">
+                                <i class="icon-trash icon-white"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</a>
+
+<h3 style="text-align:center" class="fadeIn primero">Publicaciones</h3>
+<div class="grid">
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let Publicaciones of publicacion">
+                {{validarUrl(Publicaciones.url)}}
+                <td *ngIf="imagen">
+                    {{Publicaciones.user}}
+                    {{Publicaciones.date}}<br>
+                    {{Publicaciones.category}}
+                    <section>
+                        <img [src]="Publicaciones.url"><br>
+                    </section>
+
+                    <button type="button" class="btn btn-primary"
+                        (click)="likePubli(Publicaciones.like,Publicaciones.url)" onclick="location.reload()">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </button>&nbsp;
+                    {{Publicaciones.like}}&nbsp;
+                    <button type="button" class="btn btn-success"
+                        (click)="editarPubli(Publicaciones.url,Publicaciones.user)">
+                        <i class="icon-edit icon-white"></i>
+                    </button>&nbsp;
+                    <button type="button" class="btn btn-danger"
+                        (click)="eliminarPubli(Publicaciones.url,Publicaciones.user)" onclick="location.reload()">
+                        <i class="icon-trash icon-white"></i>
+                    </button>
+                </td>
+                <td *ngIf="video">
+                    <div #demoYouTubePlayer class="demo-youtube-player">
+                        {{Publicaciones.user}}
+                        {{Publicaciones.date}}<br>
+                        {{Publicaciones.category}}
+                        <section>
+                            <youtube-player videoId={{Publicaciones.url}}></youtube-player>
+                        </section>
+
+                        <button type="button" class="btn btn-primary"
+                            (click)="likePubli(Publicaciones.like,Publicaciones.url)" onclick="location.reload()">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </button>&nbsp;
+                        {{Publicaciones.like}}&nbsp;
+                        <button type="button" class="btn btn-success"
+                            (click)="editarPubli(Publicaciones.url,Publicaciones.user)">
+                            <i class="icon-edit icon-white"></i>
+                        </button>&nbsp;
+                        <button type="button" class="btn btn-danger"
+                            (click)="eliminarPubli(Publicaciones.url,Publicaciones.user)" onclick="location.reload()">
+                            <i class="icon-trash icon-white"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+<app-footerblog></app-footerblog>

@@ -1,0 +1,43 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn primero">
+        <img src="assets/LogoLetras.png" id="icon" alt="User Icon" />
+        <h3>Registrarse</h3>
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="registroForm" (ngSubmit)="onRegister(registroForm.value)">
+        <input type="text" id="registrarse" class="fadeIn segundo" placeholder="Nombre" formControlName="name">
+        <input type="text" id="registrarse" class="fadeIn tercero" placeholder="Genero" formControlName="gender">
+        <input type="text" id="registrarse" class="fadeIn cuarto" placeholder="Nombre de Usuario" formControlName="username">
+        <input type="text" id="registrarse" class="fadeIn quinto" placeholder="Email" formControlName="email">
+        <input type="text" id="registrarse" class="fadeIn sexto" placeholder="contraseña" formControlName="password">
+        <input type="submit" class="fadeIn septimo" value="Registrarse">
+      </form>
+  
+      <!-- Aprobacion -->
+    <div class="alert alert-success" *ngIf = "msjStatus">
+        <a>{{msjUsuario}}</a>
+      </div>
+
+      <!-- Alerta -->
+    <div class="alert alert-danger" *ngIf = "errorStatus">
+        <a>{{errorMsj}}</a>
+      </div>
+
+      <!-- Registro -->
+      <div id="formFooter">
+        <a class="underlineHover" href="login">¿Ya tiene una cuenta? Iniciar sesion</a>
+      </div>
+      <br>
+      <!-- Registro -->
+      <div id="formFooter">
+        <a class="underlineHover" href="principio">Volver al inicio</a>
+      </div>
+      <br>
+  
+    </div>
+  </div>

@@ -1,0 +1,60 @@
+<app-header></app-header>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+  <h3>Lista de Imagenes</h3>
+  <a href="dashboard-publicacionesv" class="btn" style="position: absolute; right: 0;" onclick="location.reload()">
+    <span><strong>Videos Publicados</strong></span>
+  </a>&nbsp;
+
+  <a href="agregar-publicacion" class="btn">
+    <i class="icon-pencil"></i>
+    <span><strong>Nueva Publicacion</strong></span>
+  </a>&nbsp;
+
+  <a class="btn" (click)="cargaMasiva()">
+    <span><strong>Carga Masiva Publicaciones</strong></span>
+  </a>&nbsp;
+
+  <a *ngIf="cargaStatus">    
+      <input type="file" name="myfile"  (change)="onFileSelect($event.target)" >
+  </a>
+
+  <a class="btn" (click)="dir()">
+    <span><strong>Reporte</strong></span>
+  </a>&nbsp;
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Url</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Imagenes of imagenes; let indice=index">
+        <th scope="row">{{indice+1}}</th>
+        <td><img [src]="Imagenes.url" alt=""></td>
+        <td>{{Imagenes.date}}</td>
+        <td>{{Imagenes.category}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="verImagen(Imagenes.url)">
+            <i class="icon-eye-open icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-success" (click)="editarImagen(Imagenes.url)">
+            <i class="icon-edit icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger" (click)="eliminarImagen(Imagenes.url)"
+            onclick="location.reload()">
+            <i class="icon-trash icon-white"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+
+</div>
+
+<app-footer></app-footer>

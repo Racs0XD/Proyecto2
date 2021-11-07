@@ -1,0 +1,48 @@
+<app-headerblog></app-headerblog>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn primero">
+            <h3>Actualizar Usuario</h3>
+        </div>
+
+
+        <!-- Login Form -->
+        <form [formGroup]="editarForm" (ngSubmit)="actualizarUsuario(editarForm.value,nombreUs)">
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Nombre</b></label>
+            <input type="text" class="fadeIn segundo" placeholder="Nombre" formControlName="name"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Genero</b></label>
+            <input type="text" class="fadeIn tercero" placeholder="Genero" formControlName="gender"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Nombre Usuario</b></label>
+            <input type="text" class="fadeIn cuarto" placeholder="Nombre de Usuario" formControlName="username"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Correo</b></label>
+            <input type="text" class="fadeIn quinto" placeholder="Email" formControlName="email"><br><br>
+            <label for="exampleFormControlInput1" class="fadeIn i"><b>Contraseña</b></label>
+            <input type="text" class="fadeIn sexto" placeholder="contraseña" formControlName="password"><br><br>
+            <input type="submit" class="fadeIn septimo" value="Actualizar">
+        </form>
+
+
+        <!-- Aprobacion -->
+        <div class="alert alert-success" *ngIf="msjStatus">
+            <a>{{msjUsuario}}</a>
+        </div>
+
+        <!-- Alerta -->
+        <div class="alert alert-danger" *ngIf="errorStatus">
+            <a>{{errorMsj}}</a>
+        </div>
+
+        <!-- Registro -->
+        <div id="formFooter">
+            <a class="underlineHover" href="blog">Volver a blog</a>
+        </div>
+        <br>
+    </div>
+</div>
+<br><br><br><br><br><br>
+
+<app-footerblog></app-footerblog>

@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 60px 0 0 0;
+}
+ 
+#page {
+    margin: 0px auto;
+    width: 100%;
+}
+ 
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: -1px 0px;
+    z-index: 100;
+}
+ 
+#content {
+    height: 100%;
+    overflow: auto;
+    padding: 0% 1% 0% 1%;
+    width: 98%;
+}

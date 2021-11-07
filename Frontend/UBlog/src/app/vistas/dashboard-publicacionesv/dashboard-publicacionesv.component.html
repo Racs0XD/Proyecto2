@@ -1,0 +1,66 @@
+<app-header></app-header>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+  <h3>Lista de videos</h3>
+  <a href="dashboard-publicaciones" class="btn" style="position: absolute; right: 0;" onclick="location.reload()" >
+    <span><strong>Imagenes Publicadas</strong></span>
+  </a>&nbsp;
+
+  <a href="agregar-publicacion" class="btn">
+    <i class="icon-pencil"></i>
+    <span><strong>Nueva Publicacion</strong></span>
+  </a>&nbsp;
+
+  <a class="btn" (click)="cargaMasiva()">
+    <span><strong>Carga Masiva Publicaciones</strong></span>
+  </a>&nbsp;
+
+  <a *ngIf="cargaStatus">    
+      <input type="file" name="myfile"  (change)="onFileSelect($event.target)" >
+  </a>
+
+  <a class="btn" (click)="dir()">
+    <span><strong>Reporte</strong></span>
+  </a>&nbsp;
+ 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Url</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Videos of videos, let indice=index" >
+        <th scope="row">{{indice+1}}</th>
+        <td>                      
+              <div #demoYouTubePlayer class="demo-youtube-player">
+                <section>
+                  <youtube-player videoId={{Videos.url}} ></youtube-player>
+                </section>
+             </div>        
+        </td>
+        <td>{{Videos.date}}</td>
+        <td>{{Videos.category}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="verVideo(Videos.url)">
+            <i class="icon-eye-open icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-success" (click)="editarVideo(Videos.url)">
+            <i class="icon-edit icon-white"></i>
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger" (click)="eliminarVideo(Videos.url)"
+            onclick="location.reload()">
+            <i class="icon-trash icon-white"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+
+</div>
+<br><br><br><br>
+<app-footer></app-footer>

@@ -1,0 +1,43 @@
+<app-header></app-header>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+
+  <h3>Top 5 usuarios con más publicaciones</h3>
+
+ 
+
+  <a class="btn" (click)="generate()">
+    <span><strong>Reporte PDF</strong></span>
+  </a>&nbsp;
+
+  <canvas class="canvas" id="miGrafica" width="800" height="450"></canvas>
+  <img id="url" />
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Nombre Usuario</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Publicaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Usuario of users; let indice=index">
+        <th scope="row">{{indice+1}}</th>
+        <td>{{Usuario.name}}</td>
+        <td>{{Usuario.gender}}</td>
+        <td>{{Usuario.username}}</td>
+        <td>{{Usuario.email}}</td>
+        <td>{{Usuario.password}}</td>
+        <td>{{Usuario.publications}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<br><br><br>
+
+<app-footer></app-footer>

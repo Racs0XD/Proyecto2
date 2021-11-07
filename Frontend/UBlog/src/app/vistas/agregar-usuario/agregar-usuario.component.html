@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn primero">
+        <h3>Agregar Usuario</h3>
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="registroForm" (ngSubmit)="onRegister(registroForm.value)">
+        <label for="exampleFormControlInput1" class="fadeIn a"><b>Nombre</b></label>
+        <input type="text" id="registrarse" class="fadeIn segundo" placeholder="Nombre" formControlName="name"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn c"><b>Genero</b></label>
+        <input type="text" id="registrarse" class="fadeIn tercero" placeholder="Genero" formControlName="gender"><br><br>
+        <label for="exampleFormControlInput1"class="fadeIn e"><b>Nombre de Usuario</b></label>
+        <input type="text" id="registrarse" class="fadeIn cuarto" placeholder="Nombre de Usuario" formControlName="username"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn g"><b>Correo</b></label>
+        <input type="text" id="registrarse" class="fadeIn quinto" placeholder="Email" formControlName="email"><br><br>
+        <label for="exampleFormControlInput1" class="fadeIn i"><b>Contraseña</b></label>
+        <input type="text" id="registrarse" class="fadeIn sexto" placeholder="contraseña" formControlName="password"><br><br>
+        <input type="submit" class="fadeIn septimo" value="Agregar">
+      </form> 
+
+      
+      <!-- Aprobacion -->
+    <div class="alert alert-success" *ngIf = "msjStatus">
+        <a>{{msjUsuario}}</a>
+      </div>
+
+      <!-- Alerta -->
+    <div class="alert alert-danger" *ngIf = "errorStatus">
+        <a>{{errorMsj}}</a>
+      </div>
+  
+      <!-- Registro -->
+      <div id="formFooter">
+        <a class="underlineHover" href="agregar-usuario">Agregar un nuevo usuario</a><br><br>
+        <a class="underlineHover" href="dashboard-usuarios">Volver</a>
+      </div>
+      <br>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+
+
+  <app-footer></app-footer>
