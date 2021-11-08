@@ -166,6 +166,10 @@ def cargandoJson(archivoJson):
 def info():
     return jsonify({"Usuario":"Bienvenido a Ublog, un lugar en el que podrás compartir imagenes y videos utilizando su enlace url sin la necesidad de descargar ningun archivo, consigue ser uno de los usuarios en el top 5 con más publicaciones y aumentarás las probabilidades que una de tus publicaciones entre en el top 5 de publicaciones con más likes, disfruta del contenido compartido por otros usuarios y compite por ser el mejor estando entre los primeros 5."})
 
+@app.route('/infoC')
+def infoCreadir():
+    return jsonify({"Usuario":"Este sitio web fue creado por Oscar Eduardo Morales Girón, estudiante de ingeniería en Ciencias y Sistemas de la Universidad de San Carlos de Guatemala con el numero de carné 201603028"})
+
 # --------------------------------------------------- retorna la lista de usuarios-------------------------------------------------------------
 @app.route('/admin/usuarios')
 def listado():

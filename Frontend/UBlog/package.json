@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "ng build --prod"
+  },  
+  "engines": {
+    "node": "14.18.1",
+    "npm": "6.14.15"
   },
   "private": true,
   "dependencies": {
@@ -21,13 +26,19 @@
     "@angular/youtube-player": "^12.2.11",
     "bootstrap": "^5.1.3",
     "chart.js": "^3.6.0",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "ngx-file-drop": "^11.2.0",
+    "path": "^0.12.7",
     "pdfmake": "^0.2.2",
     "pdfmake-wrapper": "^2.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@angular-devkit/build-angular": "~12.2.10",
+    "@angular/cli": "~12.2.10",
+    "@angular/compiler-cli": "~12.2.0",
+    "typescript": "~4.3.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.10",
